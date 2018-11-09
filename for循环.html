@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue-2.4.0.js"></script>
+    <style>
+        table{
+            border: 1px solid #000;
+            border-collapse:collapse;
+            width: 300px;
+            text-align: center;
+        }
+        td{
+            border: 1px solid #000;
+        }
+        hr{
+            border-color:#ff3040;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 循环数组中的对象 -->
+    <!-- <div id="app">
+        <p v-for="(user,index) in arr">
+            <span v-for="(val, key) in user">
+                {{ key}}-------{{val}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+        </p>
+    </div> -->
+    <div id="app">
+        <table >
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                </tr>
+            </thead>
+            <tbody >
+                <tr v-for="(user,index) in arr">
+                    <td> {{user.name}}</td>
+                    <td> {{user.age}}</td>
+                </tr>  
+            </tbody>
+            
+        </table>
+    </div>
+
+    <hr>
+    <!-- 循环对象 -->
+    <div id="app2">
+        <p v-for="(value,key) in obj">{{ key }}------{{ value }}</p>
+    </div>
+    <hr>
+    <!-- 迭代数字 -->
+    <!-- <div id="app3" >
+        <p v-for="count in 5"> {{ count }}</p>
+    </div> -->
+    <table id="app3" :style='style'>
+        <tr v-for='x in 9'>
+            <td v-for='y in x' :style='tdStyle'> {{y}}*{{x}}={{x*y}} </td>
+        </tr>
+    </table>
+    <hr>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                arr: [
+                    {
+                        name: 'zs',
+                        age: 28
+                    },
+                    {
+                        name: 'ls',
+                        age: 20
+                    },
+                    {
+                        name: 'ww',
+                        age: 20
+                    },
+                    {
+                        name: 'zl',
+                        age: 20
+                    },
+                    {
+                        name: 'zl',
+                        age: 20
+                    },
+                    {
+                        name: 'zl',
+                        age: 20
+                    },
+                    {
+                        name: 'zl',
+                        age: 20
+                    },
+                    {
+                        name: 'zl',
+                        age: 20
+                    },
+                    {
+                        name: 'zl',
+                        age: 20
+                    }
+                ]
+            }
+        })
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {
+                obj: {
+                    id:1,
+                    name:'朱程',
+                    isgay:'yes'
+                }
+            }
+        })
+
+        var vm3=new Vue({
+            el:'#app3',
+            data:{
+                style:{
+                    'width':'100%', 
+                },
+                tdStyle:{
+                    'background-color':'#fefeef',
+                    'border': '1px solid aqua'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
