@@ -78,8 +78,8 @@
       var dt = new Date(dateStr)
       //   yyyy-mm-dd
       var y = dt.getFullYear()
-      var m = dt.getMonth() + 1
-      var d = dt.getDate()
+      var m = (dt.getMonth() + 1).toString().padStart(2,0)
+      var d = dt.getDate().toString().padStart(2,0)
       if (pattern.toLowerCase() === 'yyyy-mm-dd') {
         return `${y}-${m}-${d}`
       } else {
@@ -128,17 +128,20 @@
             alert('请输入完整的信息')
             return
           }
-          var arr=[]
+          var flag=true
           this.list.forEach(element => {
-            arr.push(element.id)
-          });
-          if (arr.indexOf(this.id.replace(/(^\s*)|(\s*$)/g, "")) ==-1) {
-              alert('id请不要重复')
+           if(this.id.replace(/(^\s*)|(\s*$)/g, "") == element.id){
+             flag=false
+             alert('id请不要重复')
               return
+           }
+          });
+          if (flag) {
+            var car = { id: this.id, name: this.name, ctime: new Date() }
+            this.list.push(car)
+            this.id = this.name = ''
             }
-          var car = { id: this.id, name: this.name, ctime: new Date() }
-          this.list.push(car)
-          this.id = this.name = ''
+          
         },
         del(id) {
           var index = this.list.findIndex(item => {
